@@ -1,7 +1,8 @@
 <?php
 $date1=date_create("now");
-$date2=date_create("2024-12-05");
+$date2=date_create("2025-12-05");
 $diff=date_diff($date2,$date1);
+
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +15,14 @@ $diff=date_diff($date2,$date1);
     <p>Het duurt nog
 
     <?php
-    echo $diff->format("%R%a days");
+    echo $diff->format("%a dagen en %h uren"), "\n";;
     ?>
- tot Sinterklaas.
+
+   tot Sinterklaas.
+
+   <?php
+    echo $_GET;
+    ?>
     </p>  
 </body>
 </html>
