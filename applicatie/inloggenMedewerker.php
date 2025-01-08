@@ -1,3 +1,9 @@
+<?php 
+    require_once 'db_connectie_pizzaria.php';
+    require_once("Library/db.functions.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,35 +16,39 @@
 <body>
     <Header>
         
-        <img src="C:/Users/janse/OneDrive/Documents/GitHub/beroepsproduct-wtux-Thijmen-Jansen/Images/Logo.png" alt="">
+        <img src="images\Logo.png" alt="">
         <h1>SOLE MACHINA</h1>
-        <a href="Login.html">log in</a>
+        <p><?php ingelogdCheck() ?> </p>
 </Header>
 <nav>
     <ul>
-        <li><a href="index.html">🍕 MENU </a></li>
-        <li><a href="winkelmand.html">🛒 WINKELMAND </a></li>
-        <li><a href="profiel.html">👤 PROFIEL </a></li>
+        <li><a href="index.php">🍕 MENU </a></li>
+        <li><a href="winkelmand.php">🛒 WINKELMAND </a></li>
+        <li><a href="profiel.php">👤 PROFIEL </a></li>
     </ul>
 </nav>
 
 <main>
+
+    <article>
+
         <section>
 
 
             <div>
                 <h4>Inloggen</h4>
-                <form action="LoginEind.php" method="post">
+                <form action="bestellingenOverzicht.html" method="post">
                     <label>Naam:</label>
                     <input type="text" name="Naam" maxlength="20" required>
                     <label>wachtwoord:</label>
                     <input type="text" name="wachtwoord" required>
                     <input type= "submit"  value="Inloggen">
                 </form>
-                <p>Nog geen account? <a href="registreren.html">Registreer</a> hier.</p>
-                <p>Medewerker? <a href="inloggenMedewerker.html">Klik</a> hier.</p>
+
+
             </div>  
         </section>
+    </article>
 </main>
 
 

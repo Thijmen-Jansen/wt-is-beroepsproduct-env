@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connectie.php';
+//require_once 'db_connectie.php';
 
 function toonTabel($tabel)
 {
@@ -67,3 +67,17 @@ function sanitize($string, $allowNull = false){
     }
 }
 
+function ingelogdCheck(){
+    $html = '';
+
+    if (isset($_SESSION['gebruiker'])){
+        $username = $_SESSION['gebruiker'];
+        echo ''.$username.'';
+        $html = '<a href="Login.php">Log uit</a>';
+        echo $html;
+    } else {
+        $html = '<a href="Login.php">log in</a>';
+        echo $html;
+    } 
+    
+}
