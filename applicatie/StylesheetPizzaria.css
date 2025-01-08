@@ -1,0 +1,230 @@
+body{
+    background-color: #F8F5E1;
+}
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #D8261D;
+    align-items: center;
+    padding-bottom: 10px;
+    font-size: 30px;
+    color:#F8F5E1;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+header a{
+    text-decoration: none;
+
+}
+
+header.Images{
+    padding: 20px;
+    
+}
+
+header img {
+    border-radius: 100%;
+}
+
+header img{
+    height: auto;
+    width: auto;
+    margin-top: 10px;
+    margin-left: 10px;
+    max-width: 100px;
+    border-radius: 100%;
+    
+}
+
+header a{
+    margin-right: 10px;
+    border-radius: 10%;
+    background-color: #F8F5E1;
+    border-style: none;
+}
+
+header a:hover{
+    background-color: #dedbc8;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li{
+    float: left;
+}
+
+nav{
+    background-color: #6BA368;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 20px;
+    
+    
+    
+}
+
+nav li a{
+    border-left: 1px solid;
+    padding: 5px 20px;
+    margin-left: 5px ;
+    color: white;
+
+}
+
+nav a:hover{
+    background-color: rgba(255, 255, 255, 0.692);
+}
+
+nav a{
+    text-decoration: none;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+footer{
+    align-items: end;
+    background-color: #6BA368;
+
+}
+
+footer div{
+    display: grid;
+    grid-template-columns: auto auto;    
+}
+
+img{
+    width: 250px;
+    height: 200px;
+    border-radius: 10%;
+}
+
+section{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    justify-content: center;
+    
+}
+
+
+section div{
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 20px;
+    background-color: white;
+    border-radius: 10%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+}
+
+section div img{
+    margin-left: 20px;
+}
+
+
+section div.Tekst{
+    margin-left: -20px;
+    
+}
+
+section div a{
+    background-color: yellow;
+    border-style: none;
+    border-radius: 10%;
+    padding: 10px;
+
+}
+
+article div{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    background-color: white;
+    margin: 20px;
+    border-radius: 2%;
+    font-size: 20px;
+
+    
+}
+
+input:invalid{
+    background-color: rgb(240, 103, 103);
+}
+
+
+input:invalid:required{
+    border-style: dotted;
+    border-color: rgb(240, 103, 103);
+}
+
+section div form{
+    display: grid;
+    grid-template-columns: auto;
+    width: 50%;
+    justify-content: left;
+    
+}
+
+input:valid:required{
+    background-image: linear-gradient(to right, green, #023020);
+}
+
+input::placeholder{
+    color: black;
+}
+
+article div{
+    display: grid;
+    grid-template-columns: auto;
+    
+}
+
+article div h6{
+    margin-left: 20px;
+}
+
+section div a:hover{
+    cursor:pointer;
+    background-color: rgb(212, 212, 7);
+}
+
+input{
+    margin-top: 10px;
+}
+
+article div p{
+    margin-left: 10px;
+}
+
+article div h5{
+    margin-left: 10px;
+}
+
+select{
+    width: 25%;
+    margin-bottom: 20px;
+}
+
+article input.Status{
+    width: 25%;
+}
+
+section div.inloggen{
+    background-color: white;
+}

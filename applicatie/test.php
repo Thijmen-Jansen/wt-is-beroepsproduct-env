@@ -1,5 +1,5 @@
 <?php
-require_once 'Library/bd.functions.php';
+require_once 'Library/db.functions.php';
 require_once './db_connectie.php';
 
 $genre = isset($_GET['genrenaam']) ? $_GET['genrenaam'] : '';
@@ -26,15 +26,17 @@ $dataset->execute(
     ]);
 // var_dump($dataset);
 
+
+
 ?>
 
 <body>
     <form action= "http://localhost:8080/test.php" method="get">
     <select name="genrenaam">
-            <option value="Klassiek" <?= $gerne == 'Klassiek' ? 'selected' : '' ?>>Klassiek</option>
-            <option value="Jazz" <?= $gerne == 'Jazz' ? 'selected' : '' ?>>Jazz </option>
+            <option value="Klassiek" $gerne>Klassiek</option>
+            <option value="Jazz" $gerne>Jazz </option>
             <option value="Pop" <?= $genre == 'Pop' ? 'selected' : '' ?>>Pop</option>
-            <option value="Alles" <?= $gerne == 'Alles' ? 'selected' : '' ?>>Alles</option>
+            <option value="%%" $genre >Alles</option>
         </select>
         <input type="submit" value="zoek">
     </form>
@@ -43,4 +45,5 @@ $dataset->execute(
     echo toonTabelInhoud($dataset);
 
     ?>
+    
 </body>

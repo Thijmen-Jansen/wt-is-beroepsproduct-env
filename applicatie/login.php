@@ -2,7 +2,7 @@
 session_start();
 $logged_in = false;
 $html = "";
-var_dump($_POST);
+//var_dump($_POST);
 if (isset($_SESSION['username'])) {
   $html = "<h1>Welcome {$_SESSION['username']}</h1>";
   $logged_in = true;

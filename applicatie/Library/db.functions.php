@@ -37,3 +37,33 @@ function toonTabelInhoud($dataset)
     $html .= '</table>';
     return $html;
 }
+
+function getGenreSelectBox($selection)
+{
+    $db = maakVerbinding();
+    $sql = 'select genrenaam 
+            from Genre';
+    $data = $db->query($sql);
+
+    $selectbox = '<select id="genrenaam" name="genrenaam">';
+    foreach($data as $rij)
+    {
+        $genrenaam = $rij['genrenaam'];
+        $selectbox .= "<option value=\"$genrenaam\">$genrenaam</option>";
+    }
+    $selectbox .= '</select>';
+
+    return $selectbox;
+}
+
+function sanitize($string, $allowNull = false){
+
+    if ($allowNull){
+        if (htmlspecialchars(trim(strip_tags($string))) == ''){
+            return null;
+        }else{
+            return htmlspecialchars(trim(strip_tags($string)));
+        }
+    }
+}
+
