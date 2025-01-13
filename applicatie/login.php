@@ -20,11 +20,12 @@
         // Select query (prepared statement)
         $sql = 'SELECT password
                 FROM LoginData
-                WHERE username = :naam';
+                WHERE username = :naam AND role = :role';
         $query = $db->prepare($sql);
     
         $data_array = [
-            ':naam' => $naam
+            ':naam' => $naam,
+            ':role' => 'klant'
         ];
         // get data from daatabase
         $query->execute($data_array);
@@ -98,9 +99,12 @@
                 <form method="post" action="">
                     <label for="gebruikersnaam">gebruikersnaam</label>
                         <input type="text" id="gebruikersnaam" name="gebruikersnaam">  
-                    <label for="wachtwoord">wachtwoord</label></td>
+                    <label for="wachtwoord">wachtwoord</label>
                         <input type="password" id="wachtwoord" name="wachtwoord">
                     <input type="submit" name="inloggen" value="inloggen">
+                </form>
+
+                <p>Mederwerker? <a href="inloggenMedewerker.php">Inloggen</a></p>
 
     
 

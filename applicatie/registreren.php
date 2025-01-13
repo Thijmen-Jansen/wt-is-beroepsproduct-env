@@ -8,8 +8,9 @@ if (isset($_POST['registreren'])) {
     $melding = ' geklikt';
     // var_dump($_POST);
         $username = sanitize(isset($_POST['naam']) ? $_POST['naam'] : null,true);
-        $wachtwoord = isset($_POST['wachtwoord']) ? $_POST['wachtwoord'] : null;
-        $email = isset($_POST['email']) ? $_POST['email'] : null;
+        $wachtwoord = sanitize(isset($_POST['wachtwoord']) ? $_POST['wachtwoord'] : null,true);
+        $email = sanitize(isset($_POST['email']) ? $_POST['email'] : null,true);
+        $role = sanitize(isset($_POST['role']) ? $_POST['role'] : null,true);
 
         if ($username === null && $wachtwoord === null) {
             $melding = 'Missing username or password';
@@ -19,7 +20,7 @@ if (isset($_POST['registreren'])) {
         $db = maakVerbinding();
         // Insert query (prepared statement)
         $sql = 'INSERT INTO LoginData (username, password, email, role)
-                values (:naam, :passwordhash, :email, :klant)';
+                values (:naam, :passwordhash, :email, :role)';
         $query = $db->prepare($sql);
 
         // Send data to database
@@ -27,10 +28,10 @@ if (isset($_POST['registreren'])) {
             'naam' => $username,
             'passwordhash' => $password_hash,
             'email' => $email,
-            'klant' => 'klant'
+            'role' => $role
         ];
         $succes = $query->execute($data_array);
-        var_dump($succes);
+        //var_dump($succes);
 
         // Check results
         if ($succes) {
@@ -88,6 +89,12 @@ if (isset($_POST['registreren'])) {
                                 
                                     <label for="email">email</label>
                                     <input type="email" id="email" name="email">
+
+                                    <label for="role">Role:</label>
+                                    <select name="role">
+                                        <option> staff</option>
+                                        <option>klant</option>
+                                    </select>
 
                                     <input type="submit" name="registreren" value="registreren">
                                 

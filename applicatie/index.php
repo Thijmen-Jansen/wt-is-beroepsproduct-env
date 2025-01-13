@@ -34,49 +34,49 @@
     <section>
         
             <div>
-                <img src="C:/Users/janse/OneDrive/Documents/GitHub/beroepsproduct-wtux-Thijmen-Jansen/Images/pizzamargherita.jpg" alt="">
+                <img src="images/pizzamargherita.jpg" alt="">
                     <h5>Margherita Pizza</h5>
                     <p>De margherita pizza is een Italiaanse klassieker met tomatensaus, mozzarella en verse basilicum, simpel en vol smaak.</p>
-                    <a href="winkelmand.html">Bestellen</a>
+                    <a href="winkelmand.php">Bestellen</a>
             </div>
 
             <div>
-                <img src="C:/Users/janse/OneDrive/Documents/GitHub/beroepsproduct-wtux-Thijmen-Jansen/Images/SalamiPizza.jpg" alt="">
+                <img src="images/SalamiPizza.jpg" alt="">
                     <h5>Salami Pizza</h5>
                     <p>De salami pizza is een hartige favoriet, belegd met tomatensaus, gesmolten mozzarella, pittige salami en een vleugje oregano. Simpel, maar heerlijk rijk van smaak!</p>
-                    <a href="winkelmand.html">Bestellen</a>
+                    <a href="winkelmand.php">Bestellen</a>
 
             </div>
 
             <div>
                 
-                    <img src="C:/Users/janse/OneDrive/Documents/GitHub/beroepsproduct-wtux-Thijmen-Jansen/Images/SupremePizza.avif" alt="">
+                    <img src="images/SupremePizza.avif" alt="">
                     <h5>Supreme Pizza</h5>
                     <p>De supreme pizza is een smaakvolle topper, rijk belegd met tomatensaus, gesmolten kaas, salami, ham, zwarte olijven, paprika en verse basilicum. Een perfecte mix van hartig en aromatisch!</p>
-                    <a href="winkelmand.html">Bestellen</a>
+                    <a href="winkelmand.php">Bestellen</a>
 
             </div>
 
             <div>
-                <img src="C:/Users/janse/OneDrive/Documents/GitHub/beroepsproduct-wtux-Thijmen-Jansen/Images/VegetarischePizza.jpg" alt="">
+                <img src="images/VegetarischePizza.jpg" alt="">
                     <h5>Vegetarische Pizza</h5>
                     <p>Deze vegetarische pizza zit boordevol smaak en kleur. Belegd met sappige cherrytomaten, verse rucola, malse champignons, gesmolten mozzarella en een basis van tomatensaus, is het een heerlijke keuze voor liefhebbers van groente!</p>
-                    <a href="winkelmand.html">Bestellen</a>
+                    <a href="winkelmand.php">Bestellen</a>
 
             </div>
             
             <div>
-                <img src="C:/Users/janse/OneDrive/Documents/GitHub/beroepsproduct-wtux-Thijmen-Jansen/Images/SpecialPizza.png" alt="">
+                <img src="images/SpecialPizza.png" alt="">
                     <h5>Special Pizza</h5>
                     <p>De special pizza is een heerlijke combinatie van smaken, belegd met tomatensaus, gesmolten kaas, malse ham, knapperige paprika en zachte ui. Een klassieke keuze met een verfijnde twist!</p>
-                    <a href="winkelmand.html"> Bestellen</a>
+                    <a href="winkelmand.php"> Bestellen</a>
             </div>
 
             <div>
-                <img src="C:/Users/janse/OneDrive/Documents/GitHub/beroepsproduct-wtux-Thijmen-Jansen/Images/HawaiiPizza.jpg" alt="">
+                <img src="images/HawaiiPizza.jpg" alt="">
                     <h5>Hawaii Pizza</h5>
                     <p>De Hawaii pizza is een tropische favoriet, belegd met tomatensaus, gesmolten kaas, malse ham en zoete ananas. Een perfecte balans tussen hartig en zoet!</p>
-                    <a href="winkelmand.html"> Bestellen</a>
+                    <a href="winkelmand.php"> Bestellen</a>
             </div>
     </section>
 

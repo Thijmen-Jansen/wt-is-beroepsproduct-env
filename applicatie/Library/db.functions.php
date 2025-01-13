@@ -18,7 +18,7 @@ function toonTabelInhoud($dataset)
     $html = '<table>';
 
     $html .= '<thead><tr>';
-    for( $i = 0; $i < $dataset->columnCount(); $i++){
+    for ($i = 0; $i < $dataset->columnCount(); $i++) {
         $col = $dataset->getColumnMeta($i);
         $html .= '<th>' . $col['name'] . '<th>';
     }
@@ -46,8 +46,7 @@ function getGenreSelectBox($selection)
     $data = $db->query($sql);
 
     $selectbox = '<select id="genrenaam" name="genrenaam">';
-    foreach($data as $rij)
-    {
+    foreach ($data as $rij) {
         $genrenaam = $rij['genrenaam'];
         $selectbox .= "<option value=\"$genrenaam\">$genrenaam</option>";
     }
@@ -56,34 +55,67 @@ function getGenreSelectBox($selection)
     return $selectbox;
 }
 
-function sanitize($string, $allowNull = false){
+function sanitize($string, $allowNull = false)
+{
 
-    if ($allowNull){
-        if (htmlspecialchars(trim(strip_tags($string))) == ''){
+    if ($allowNull) {
+        if ($string === null) {
             return null;
-        }else{
+        } else if (htmlspecialchars(trim(strip_tags($string))) == '') {
+            return null;
+        } else {
             return htmlspecialchars(trim(strip_tags($string)));
         }
     }
 }
 
-function ingelogdCheck(){
+function ingelogdCheck()
+{
     $html = '';
 
-    if (isset($_SESSION['gebruiker'])){
+    if (isset($_SESSION['gebruiker'])) {
         $username = $_SESSION['gebruiker'];
-        echo ''.$username.'';
+        echo '' . $username . '';
         $html = '<a href="Login.php">Log uit</a>';
         echo $html;
     } else {
         $html = '<a href="Login.php">log in</a>';
         echo $html;
-    } 
-    
+    }
+
 }
 
-function bestelItem($Item){
+function bestelItem($Item)
+{
     $winkelwagen = [];
-    
+
     $winkelwagen[] = $Item;
 }
+
+
+function inloggen($role){
+            $db = maakVerbinding();
+                // Select query (prepared statement)
+                $sql = 'SELECT password
+                        FROM LoginData
+                        WHERE username = :naam AND role = :role';
+                $query = $db->prepare($sql);
+            
+                $data_array = [
+                    ':naam' => $naam,
+                    ':role' => $role
+                ];
+                // get data from daatabase
+
+                $query->execute($data_array);
+            
+                if ($rij = $query->fetch()) {
+                    //gebruiker gevonden
+                    $passwordhash = $rij['password'];
+                    $role = $rij['role'];
+
+                    if (password_verify($wachtwoord, $passwordhash)){
+                        return true;
+                    }
+                }
+            }
