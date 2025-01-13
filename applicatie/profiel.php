@@ -18,7 +18,7 @@ session_start();
         
         <img src="images\Logo.png" alt="">
         <h1>SOLE MACHINA</h1>
-        <a href="logout.php">Log uit</a>
+        <p><?php ingelogdCheck() ?></p>
 
 </Header>
 <nav>

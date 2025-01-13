@@ -19,7 +19,7 @@
         $db = maakVerbinding();
         // Select query (prepared statement)
         $sql = 'SELECT password
-                FROM logins
+                FROM LoginData
                 WHERE username = :naam';
         $query = $db->prepare($sql);
     

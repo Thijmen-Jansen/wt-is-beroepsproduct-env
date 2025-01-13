@@ -9,6 +9,7 @@ if (isset($_POST['registreren'])) {
     var_dump($_POST);
         $username = isset($_POST['naam']) ? $_POST['naam'] : null;
         $wachtwoord = isset($_POST['wachtwoord']) ? $_POST['wachtwoord'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
 
         if ($username === null && $wachtwoord === null) {
             $melding = 'Missing username or password';
@@ -17,14 +18,16 @@ if (isset($_POST['registreren'])) {
 
         $db = maakVerbinding();
         // Insert query (prepared statement)
-        $sql = 'INSERT INTO logins (username, password)
-                values (:naam, :passwordhash)';
+        $sql = 'INSERT INTO LoginData (username, password, email, role)
+                values (:naam, :passwordhash, :email, :klant)';
         $query = $db->prepare($sql);
 
         // Send data to database
         $data_array = [
             'naam' => $username,
-            'passwordhash' => $password_hash
+            'passwordhash' => $password_hash,
+            'email' => $email,
+            'klant' => 'klant'
         ];
         $succes = $query->execute($data_array);
         var_dump($succes);
@@ -38,15 +41,9 @@ if (isset($_POST['registreren'])) {
     }
 }
 
-
-
-
-
-
-
-
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -67,6 +64,10 @@ if (isset($_POST['registreren'])) {
             <tr>
                 <td><label for="wachtwoord">wachtwoord</label></td>
                 <td><input type="password" id="wachtwoord" name="wachtwoord"></td>
+            </tr>
+            <tr>
+                <td><label for="email">email</label></td>
+                <td><input type="email" id="email" name="email"></td>
             </tr>
             <tr>
                 <td> </td>

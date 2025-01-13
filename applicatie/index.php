@@ -3,7 +3,7 @@
     require_once("Library/db.functions.php");
 
     session_start();
-
+    
 ?>
 
 <!DOCTYPE html>

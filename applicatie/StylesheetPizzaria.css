@@ -181,6 +181,8 @@ section div form{
     
 }
 
+
+
 input:valid:required{
     background-image: linear-gradient(to right, green, #023020);
 }

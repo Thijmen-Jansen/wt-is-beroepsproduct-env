@@ -81,3 +81,9 @@ function ingelogdCheck(){
     } 
     
 }
+
+function bestelItem($Item){
+    $winkelwagen = [];
+    
+    $winkelwagen[] = $Item;
+}

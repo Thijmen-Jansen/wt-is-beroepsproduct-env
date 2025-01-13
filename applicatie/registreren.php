@@ -1,8 +1,45 @@
-<?php 
-    require_once ('db_connectie_pizzaria.php');
-    require_once("Library/db.functions.php");
+<?php
+require_once("Library/db.functions.php");
+require_once("db_connectie_pizzaria.php");
 
-    session_start();
+$melding = '';
+$login = '';
+if (isset($_POST['registreren'])) {
+    $melding = ' geklikt';
+    // var_dump($_POST);
+        $username = sanitize(isset($_POST['naam']) ? $_POST['naam'] : null,true);
+        $wachtwoord = isset($_POST['wachtwoord']) ? $_POST['wachtwoord'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
+
+        if ($username === null && $wachtwoord === null) {
+            $melding = 'Missing username or password';
+    } else {
+        $password_hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
+
+        $db = maakVerbinding();
+        // Insert query (prepared statement)
+        $sql = 'INSERT INTO LoginData (username, password, email, role)
+                values (:naam, :passwordhash, :email, :klant)';
+        $query = $db->prepare($sql);
+
+        // Send data to database
+        $data_array = [
+            'naam' => $username,
+            'passwordhash' => $password_hash,
+            'email' => $email,
+            'klant' => 'klant'
+        ];
+        $succes = $query->execute($data_array);
+        var_dump($succes);
+
+        // Check results
+        if ($succes) {
+            $melding = 'Gebruiker is geregistreerd.';
+        } else {
+            $melding = 'Registratie is mislukt.';
+        }
+    }
+}
 
 ?>
 
@@ -40,22 +77,21 @@
 
 
             <div>
-                <h4>Registreren</h4>
-                <form action="Login.html" method="post">
-                    <label>Naam: *</label>
-                    <input type="text" name="Naam" required>
-                    <label>E-mail: *</label>
-                    <input type="email" name="Email"  required>
-                    <label>Telefoonnummer: </label>
-                    <input type="number" name="telefoonnummer" >
-                    <label>wachtwoord: *</label>
-                    <input type="text" name="wachtwoord" required>
-                    <label>Herhaal wachtwoord: *</label>
-                    <input type="text" name="wachtwoord" required>
-                    
-                    <input type= "submit"  value="Registreren">
-                </form>
 
+                        <form method="post" action="">
+                                
+                                    <label for="naam">naam</label>
+                                    <input type="text" id="naam" name="naam">
+                                
+                                    <label for="wachtwoord">wachtwoord</label>
+                                    <input type="password" id="wachtwoord" name="wachtwoord">
+                                
+                                    <label for="email">email</label>
+                                    <input type="email" id="email" name="email">
+
+                                    <input type="submit" name="registreren" value="registreren">
+                                
+                        </form>
             </div>  
         </section>
     </article>
