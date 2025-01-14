@@ -93,29 +93,4 @@ function bestelItem($Item)
 }
 
 
-function inloggen($role){
-            $db = maakVerbinding();
-                // Select query (prepared statement)
-                $sql = 'SELECT password
-                        FROM LoginData
-                        WHERE username = :naam AND role = :role';
-                $query = $db->prepare($sql);
-            
-                $data_array = [
-                    ':naam' => $naam,
-                    ':role' => $role
-                ];
-                // get data from daatabase
 
-                $query->execute($data_array);
-            
-                if ($rij = $query->fetch()) {
-                    //gebruiker gevonden
-                    $passwordhash = $rij['password'];
-                    $role = $rij['role'];
-
-                    if (password_verify($wachtwoord, $passwordhash)){
-                        return true;
-                    }
-                }
-            }

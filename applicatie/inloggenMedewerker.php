@@ -17,7 +17,28 @@
        
        // 3. Ophalen van de hash uit de database
        // database
-       
+       $db = maakVerbinding();
+       // Select query (prepared statement)
+       $sql = 'SELECT password
+               FROM LoginData
+               WHERE username = :naam AND role = :role';
+       $query = $db->prepare($sql);
+   
+       $data_array = [
+           ':naam' => $naam,
+           ':role' => 'staff'
+       ];
+       // get data from daatabase
+
+       $query->execute($data_array);
+   
+       if ($rij = $query->fetch()) {
+           //gebruiker gevonden
+           $passwordhash = $rij['password'];
+
+           if (password_verify($wachtwoord, $passwordhash)){
+            return true;
+           }
 
            //wachtwoord checken
            if (password_verify($wachtwoord, $passwordhash)) {
