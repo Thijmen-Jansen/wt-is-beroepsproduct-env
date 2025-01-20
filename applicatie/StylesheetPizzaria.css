@@ -230,3 +230,7 @@ article input.Status{
 section div.inloggen{
     background-color: white;
 }
+
+::placeholder{
+    font-style: italic;
+}

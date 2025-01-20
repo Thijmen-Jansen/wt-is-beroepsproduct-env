@@ -3,6 +3,47 @@
     require_once("Library/db.functions.php");
     session_start();
 
+    if (!isset($_SESSION['winkelwagen'])) {
+        $_SESSION['winkelwagen'] = [];
+    }
+
+    if (isset($_POST['Margherita Pizza'])) {
+        // Voeg waarde 1 toe aan de array
+        $_SESSION['winkelwagen'][] = "Margherita Pizza";
+
+    } elseif (isset($_POST['Pepperoni Pizza'])) {
+        // Voeg waarde 2 toe aan de array
+        $_SESSION['winkelwagen'][] = "Pepperoni Pizza";
+
+    }elseif (isset($_POST['Supreme Pizza'])) {
+        // Voeg waarde 2 toe aan de array
+        $_SESSION['winkelwagen'][] = "Supreme Pizza";
+
+    }elseif (isset($_POST['Vegetarische Pizza'])) {
+        // Voeg waarde 2 toe aan de array
+        $_SESSION['winkelwagen'][] = "Vegetarische Pizza";
+
+    }elseif (isset($_POST['Special Pizza'])) {
+        // Voeg waarde 2 toe aan de array
+        $_SESSION['winkelwagen'][] = "Special Pizza";
+
+    }elseif (isset($_POST['Hawaii Pizza'])) {
+        // Voeg waarde 2 toe aan de array
+        $_SESSION['winkelwagen'][] = "Hawaii Pizza";
+
+    }elseif (isset($_POST['Knoflookbrood'])) {
+        // Voeg waarde 2 toe aan de array
+        $_SESSION['winkelwagen'][] = "Knoflookbrood";
+
+    }elseif (isset($_POST['Blikje Cola'])) {
+        // Voeg waarde 2 toe aan de array
+        $_SESSION['winkelwagen'][] = "Blikje Cola";
+
+    }elseif (isset($_POST['Blikje Sprite'])) {
+        // Voeg waarde 2 toe aan de array
+        $_SESSION['winkelwagen'][] = "Blikje Sprite";
+    }
+    var_dump($_SESSION['winkelwagen']);
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +79,7 @@
     
     <div>
         
-            <h6>5X Supreme Pizza</h6>    
-            <h6>2X Hawaii Pizza</h6>
-            <h6>1X Vegetarisch Pizza</h6>
+            <?php winkelwagen() ?>
         
     </div>
 

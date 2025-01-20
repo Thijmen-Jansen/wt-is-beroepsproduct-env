@@ -95,7 +95,7 @@ if (!isset($_SESSION['winkelwagen'])) {
 
 
 <form method="POST" action="">
-    <button type="submit" name="button1">Bestel</button>
+    <button type="submit" name="button1" value="test" >Bestel</button>
     <button type="submit" name="button2">Bestel</button>
 </form>
 <a href="logout.php">log uit</a>

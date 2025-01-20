@@ -1,53 +1,59 @@
-<?php
-    require_once 'db_connectie_pizzaria.php';
-    require_once("Library/db.functions.php");
+<?php 
+   require_once 'db_connectie_pizzaria.php';
+   require_once("Library/db.functions.php");
 
 
-    $melding = '';  // nog niks te melden 
+   $melding = '';  // nog niks te melden 
 
+   //var_dump($_POST);
 
-    if(isset($_POST['inloggen'])) {
-        // 1. lees gegevens
-        $naam        = $_POST['gebruikersnaam'];
-        $wachtwoord  = $_POST['wachtwoord'];
+   if(isset($_POST['login'])) {
+       // 1. lees gegevens
+       $username        = sanitize($_POST['username'],true);
+       $password  = sanitize($_POST['password'],true);
+      
+       // 2. check gegevens
+       // Inhoud checken dat mag je zelf doen
        
-        // 2. check gegevens
-        // Inhoud checken dat mag je zelf doen
-        
-        // 3. Ophalen van de hash uit de database
-        // database
-        $db = maakVerbinding();
-        // Select query (prepared statement)
-        $sql = 'SELECT password
-                FROM LoginData
-                WHERE username = :naam AND role = :role';
-        $query = $db->prepare($sql);
-    
-        $data_array = [
-            ':naam' => $naam,
-            ':role' => 'klant'
-        ];
-        // get data from daatabase
-        $query->execute($data_array);
-    
-        if ($rij = $query->fetch()) {
-            //gebruiker gevonden
-            $passwordhash = $rij['password'];
-    
-            //wachtwoord checken
-            if (password_verify($wachtwoord, $passwordhash)) {
+       // 3. Ophalen van de hash uit de database
+       // database
+       $db = maakVerbinding();
+       // Select query (prepared statement)
+       $sql = 'SELECT password
+               FROM [User]
+               WHERE username = :name AND role = :role';
+       $query = $db->prepare($sql);
+   
+       $data_array = [
+           ':name' => $username,
+           ':role' => 'Client'
+       ];
+       // get data from database
+
+       $query->execute($data_array);
+   
+       if ($rij = $query->fetch()) {
+           //gebruiker gevonden
+           $passwordhash = $rij['password'];
+           var_dump($rij);
+
+
+           //wachtwoord checken
+           if (password_verify($password, $passwordhash)) { 
                 session_start();
-                $_SESSION['gebruiker'] = $naam;
-                header('location: profiel.php');
-                $melding = 'Gebruker is ingelogd';
-            } else {
-                $melding = 'fout: incorrecte inloggegevens!!';
-            }
-        } else {
-            $melding = 'Incorrecte inloggegevens';
-        }
-    }
+               $_SESSION['User'] = $username;
+               header('location: profiel.php');
+               $melding = 'Gebruker is ingelogd';
+               echo $melding;
+           } else {
+               $melding = 'fout: incorrecte inloggegevens!!';
+           }
+       } else {
+           $melding = 'Incorrecte inloggegevens';
+       }
+   }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -97,12 +103,14 @@
             
 
                 <form method="post" action="">
-                    <label for="gebruikersnaam">gebruikersnaam</label>
-                        <input type="text" id="gebruikersnaam" name="gebruikersnaam">  
-                    <label for="wachtwoord">wachtwoord</label>
-                        <input type="password" id="wachtwoord" name="wachtwoord">
-                    <input type="submit" name="inloggen" value="inloggen">
+                    <label for="username">Username</label>
+                        <input type="text" id="username" name="username">  
+                    <label for="password">Password</label>
+                        <input type="password" id="password" name="password">
+                    <input type="submit" name="login" value="login">
                 </form>
+
+                <?Php echo $melding ?>
 
                 <p>Mederwerker? <a href="inloggenMedewerker.php">Inloggen</a></p>
 

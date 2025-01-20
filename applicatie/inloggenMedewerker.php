@@ -5,12 +5,12 @@
 
    $melding = '';  // nog niks te melden 
 
+   //var_dump($_POST);
 
-   if(isset($_POST['inloggen'])) {
+   if(isset($_POST['login'])) {
        // 1. lees gegevens
-       $naam        = sanitize($_POST['gebruikersnaam'],true);
-       $wachtwoord  = sanitize($_POST['wachtwoord'],true);
-       
+       $username        = sanitize($_POST['username'],true);
+       $password  = sanitize($_POST['password'],true);
       
        // 2. check gegevens
        // Inhoud checken dat mag je zelf doen
@@ -20,32 +20,31 @@
        $db = maakVerbinding();
        // Select query (prepared statement)
        $sql = 'SELECT password
-               FROM LoginData
-               WHERE username = :naam AND role = :role';
+               FROM [User]
+               WHERE username = :name AND role = :role';
        $query = $db->prepare($sql);
    
        $data_array = [
-           ':naam' => $naam,
-           ':role' => 'staff'
+           ':name' => $username,
+           ':role' => 'Personnel'
        ];
-       // get data from daatabase
+       // get data from database
 
        $query->execute($data_array);
    
        if ($rij = $query->fetch()) {
            //gebruiker gevonden
            $passwordhash = $rij['password'];
+           var_dump($rij);
 
-           if (password_verify($wachtwoord, $passwordhash)){
-            return true;
-           }
 
            //wachtwoord checken
-           if (password_verify($wachtwoord, $passwordhash)) {
-               session_start();
-               $_SESSION['gebruiker'] = $naam;
-               header('location: profiel.php');
+           if (password_verify($password, $passwordhash)) { 
+                session_start();
+               $_SESSION['User'] = $username;
+               header('location: bestellingenOverzicht.php');
                $melding = 'Gebruker is ingelogd';
+               echo $melding;
            } else {
                $melding = 'fout: incorrecte inloggegevens!!';
            }
@@ -54,6 +53,7 @@
        }
    }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,14 +90,14 @@
                 <h4>Inloggen</h4>
                 <form action="" method="post">
                     <label>Naam:</label>
-                    <input type="text" name="Naam" maxlength="20" required>
+                    <input type="text" name="username" maxlength="20" required>
                     <label>Wachtwoord:</label>
-                    <input type="text" name="wachtwoord" required>
+                    <input type="password" name="password" required>
 
           
-           <?php  //var_dump($rij); ?>
+           <?php  echo $melding ?>
                    
-                    <input type= "submit"  value="Inloggen">
+                    <input type= "submit" name="login" value="login">
                 </form>
 
 

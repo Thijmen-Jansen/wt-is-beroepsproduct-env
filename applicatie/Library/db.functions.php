@@ -73,8 +73,8 @@ function ingelogdCheck()
 {
     $html = '';
 
-    if (isset($_SESSION['gebruiker'])) {
-        $username = $_SESSION['gebruiker'];
+    if (isset($_SESSION['User'])) {
+        $username = $_SESSION['User'];
         echo '' . $username . '';
         $html = '<a href="Login.php">Log uit</a>';
         echo $html;
@@ -85,11 +85,23 @@ function ingelogdCheck()
 
 }
 
-function bestelItem($Item)
-{
-    $winkelwagen = [];
+function winkelwagen(){
+    $html = '';
 
-    $winkelwagen[] = $Item;
+    foreach($_SESSION['winkelwagen'] as $item){
+        $html = "<section><div>";
+        echo $html;
+        echo $item;
+        
+        $html = "</div></section>";
+        echo $html;
+
+        // echo "<section><div>";
+        // print_r($item);
+        // echo "</div></section>";
+
+    }
+    return $html;
 }
 
 

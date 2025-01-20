@@ -4,31 +4,33 @@ require_once("db_connectie_pizzaria.php");
 
 $melding = '';
 $login = '';
-if (isset($_POST['registreren'])) {
+if (isset($_POST['register'])) {
     $melding = ' geklikt';
     // var_dump($_POST);
-        $username = sanitize(isset($_POST['naam']) ? $_POST['naam'] : null,true);
-        $wachtwoord = sanitize(isset($_POST['wachtwoord']) ? $_POST['wachtwoord'] : null,true);
-        $email = sanitize(isset($_POST['email']) ? $_POST['email'] : null,true);
+        $username = sanitize(isset($_POST['name']) ? $_POST['name'] : null,true);
+        $password = sanitize(isset($_POST['password']) ? $_POST['password'] : null,true);
+        $firstName = sanitize(isset($_POST['first_name']) ? $_POST['first_name'] : null,true);
+        $lastName = sanitize(isset($_POST['last_name']) ? $_POST['last_name'] : null,true);
         $role = sanitize(isset($_POST['role']) ? $_POST['role'] : null,true);
 
-        if ($username === null && $wachtwoord === null) {
+        if ($username === null && $password === null) {
             $melding = 'Missing username or password';
     } else {
-        $password_hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         $db = maakVerbinding();
         // Insert query (prepared statement)
-        $sql = 'INSERT INTO LoginData (username, password, email, role)
-                values (:naam, :passwordhash, :email, :role)';
+        $sql = 'INSERT INTO [User] (username, password, first_name, last_name, address, role)
+                values (:name, :passwordhash, :first_name, :last_name, NULL, :role)';
         $query = $db->prepare($sql);
 
         // Send data to database
         $data_array = [
-            'naam' => $username,
-            'passwordhash' => $password_hash,
-            'email' => $email,
-            'role' => $role
+            ':name' => $username,
+            ':passwordhash' => $password_hash,
+            ':first_name' => $firstName,
+            ':last_name' => $lastName,
+            ':role' => $role
         ];
         $succes = $query->execute($data_array);
         //var_dump($succes);
@@ -36,6 +38,7 @@ if (isset($_POST['registreren'])) {
         // Check results
         if ($succes) {
             $melding = 'Gebruiker is geregistreerd.';
+            header("Location: login.php");
         } else {
             $melding = 'Registratie is mislukt.';
         }
@@ -81,25 +84,29 @@ if (isset($_POST['registreren'])) {
 
                         <form method="post" action="">
                                 
-                                    <label for="naam">naam</label>
-                                    <input type="text" id="naam" name="naam">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name">
                                 
-                                    <label for="wachtwoord">wachtwoord</label>
-                                    <input type="password" id="wachtwoord" name="wachtwoord">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password">
                                 
-                                    <label for="email">email</label>
-                                    <input type="email" id="email" name="email">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" id="first_name" name="first_name">
+
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" id="last_name" name="last_name">
 
                                     <label for="role">Role:</label>
                                     <select name="role">
-                                        <option> staff</option>
-                                        <option>klant</option>
+                                        <option> Personnel</option>
+                                        <option>Client</option>
                                     </select>
 
-                                    <input type="submit" name="registreren" value="registreren">
-                                
+                                    <input type="submit" name="register" value="register">
+
+                                    <?php echo $melding ?>
                         </form>
-            </div>  
+            </div> 
         </section>
     </article>
 </main>
