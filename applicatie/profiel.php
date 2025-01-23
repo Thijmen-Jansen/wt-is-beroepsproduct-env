@@ -2,6 +2,8 @@
 require_once("Library/db.functions.php");
 require_once ('db_connectie_pizzaria.php');
 session_start();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -34,29 +36,9 @@ session_start();
     <h4>Bestelgeschiedenis</h4>
 
 
-    <div>
-        <h4>28/11/24</h4>
-        <p>Vegan Pizza </p>
-        <p>Hawaii Pizza</p>
-        <p>€25.76</p>
-        <p>Status: Onderweg</p>
-    </div>
 
-    <div>
-        <h4>16/11/24</h4>
-        <p>Hawaii Pizza</p>
-        <p>Supreme Pizza</p>
-        <p>€23.45</p>
-        <p>Status: Bezorgd</p>
-    </div>
-
-    <div>
-        <h4>26/10/24</h4>
-        <p>Margherita Pizza</p>
-        <p>Salami Pizza</p>
-        <p>€23.45</p>
-        <p>Status: Bezorgd</p>
-    </div>
+    <?php profiel()
+    ?>
 
 </article>
 

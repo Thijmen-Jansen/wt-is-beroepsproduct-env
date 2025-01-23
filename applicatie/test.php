@@ -42,8 +42,17 @@ session_start();
 //     }
 //     return $html;
 // };
+$formattedDate = '';
+if(isset($_POST['test'])){
+    //$date = $_POST['test'];
+    //$datum = date_format($date['test'],"Y/m/d H:i:s");
 
+    //$formattedDate = $date->format("Y-m-d H:i:s");
 
+    
+// Maak een nieuw DateTime-object
+
+}
 function winkelwagen(){
     $html = '';
 
@@ -74,7 +83,20 @@ function winkelwagen(){
     <title>Document</title>
 </head>
 <body>
-<?php echo winkelwagen(); ?>
+<?php //echo winkelwagen(); ?>
+
+ <button> <?php //reset($_SESSION['winkelwagen']) ?> </button> 
+
+
+ <form action="" method="post">
+    <input type="datetime-local" name="test" id="">
+    <input type="submit" value="hoi">
+ </form>
+
+ <?php 
+
+echo $formattedDate; // Output: 2025-01-21 14:30:00
+?>
     
 </body>
 </html>

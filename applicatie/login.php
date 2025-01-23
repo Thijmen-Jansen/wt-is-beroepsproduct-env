@@ -104,15 +104,17 @@
 
                 <form method="post" action="">
                     <label for="username">Username</label>
-                        <input type="text" id="username" name="username">  
+                        <input type="text" id="username" name="username" required>  
                     <label for="password">Password</label>
-                        <input type="password" id="password" name="password">
+                        <input type="password" id="password" name="password" required>
                     <input type="submit" name="login" value="login">
                 </form>
 
                 <?Php echo $melding ?>
 
                 <p>Mederwerker? <a href="inloggenMedewerker.php">Inloggen</a></p>
+                <p>Nog geen account? <a href="registreren.php">registreren</a></p>
+
 
     
 

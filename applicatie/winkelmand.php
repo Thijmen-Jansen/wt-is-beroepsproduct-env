@@ -2,48 +2,54 @@
     require_once 'db_connectie_pizzaria.php';
     require_once("Library/db.functions.php");
     session_start();
+    //var_dump($_POST);
+    $melding = '';
 
-    if (!isset($_SESSION['winkelwagen'])) {
+    if(isset($_POST['clear'])){
         $_SESSION['winkelwagen'] = [];
     }
 
-    if (isset($_POST['Margherita Pizza'])) {
-        // Voeg waarde 1 toe aan de array
-        $_SESSION['winkelwagen'][] = "Margherita Pizza";
+    if(isset($_POST['afronden'])){
 
-    } elseif (isset($_POST['Pepperoni Pizza'])) {
-        // Voeg waarde 2 toe aan de array
-        $_SESSION['winkelwagen'][] = "Pepperoni Pizza";
+        $name = sanitize(isset($_POST['name']) ? $_POST['name'] : null, false);
+        $addres = sanitize(isset($_POST['addres']) ? $_POST['addres'] : null,false);
+        $datetime = sanitize(isset($_POST['datetime']) ? $_POST['datetime'] : null,false);
 
-    }elseif (isset($_POST['Supreme Pizza'])) {
-        // Voeg waarde 2 toe aan de array
-        $_SESSION['winkelwagen'][] = "Supreme Pizza";
-
-    }elseif (isset($_POST['Vegetarische Pizza'])) {
-        // Voeg waarde 2 toe aan de array
-        $_SESSION['winkelwagen'][] = "Vegetarische Pizza";
-
-    }elseif (isset($_POST['Special Pizza'])) {
-        // Voeg waarde 2 toe aan de array
-        $_SESSION['winkelwagen'][] = "Special Pizza";
-
-    }elseif (isset($_POST['Hawaii Pizza'])) {
-        // Voeg waarde 2 toe aan de array
-        $_SESSION['winkelwagen'][] = "Hawaii Pizza";
-
-    }elseif (isset($_POST['Knoflookbrood'])) {
-        // Voeg waarde 2 toe aan de array
-        $_SESSION['winkelwagen'][] = "Knoflookbrood";
-
-    }elseif (isset($_POST['Blikje Cola'])) {
-        // Voeg waarde 2 toe aan de array
-        $_SESSION['winkelwagen'][] = "Blikje Cola";
-
-    }elseif (isset($_POST['Blikje Sprite'])) {
-        // Voeg waarde 2 toe aan de array
-        $_SESSION['winkelwagen'][] = "Blikje Sprite";
+        if ($name === null || $addres === null || $datetime === null) {
+            $melding = 'Missing name, Adress or Date';
+        }
     }
-    var_dump($_SESSION['winkelwagen']);
+//---------------------------------------------------------------------------------------------
+    
+// } else {
+//     $password_hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
+
+//     $db = maakVerbinding();
+//     // Insert query (prepared statement)
+//     $sql = 'INSERT INTO LoginData (username, password, email, role)
+//             values (:naam, :passwordhash, :email, :klant)';
+//     $query = $db->prepare($sql);
+
+//     // Send data to database
+//     $data_array = [
+//         'naam' => $username,
+//         'passwordhash' => $password_hash,
+//         'email' => $email,
+//         'klant' => 'klant'
+//     ];
+//     $succes = $query->execute($data_array);
+//     var_dump($succes);
+
+//     // Check results
+//     if ($succes) {
+//         $melding = 'Gebruiker is geregistreerd.';
+//     } else {
+//         $melding = 'Registratie is mislukt.';
+//     }
+// }
+
+//var_dump($_SESSION['winkelwagen']);
+
 ?>
 
 <!DOCTYPE html>
@@ -80,23 +86,24 @@
     <div>
         
             <?php winkelwagen() ?>
+            <form action="" method="post">
+                <button type="submit" name="clear">Clear Basket</button>
+            </form>
         
     </div>
 
     <section>
         
          <div>
-            <form action="BestellingAfgerond.html" method="post">
+            <form action="" method="post">
                 <label>Naam:</label>
-                <input type="text" name="Naam" maxlength="20" required placeholder="Maximaal 20 karakters">
-                <label>Telefoonnummer:</label>
-                <input type="number" name="telefoonnummer" >
+                <input type="text" name="name" maxlength="20" required placeholder="Maximaal 20 karakters">
                 <label>Adres:</label>
-                <input type="text" name="adres" required placeholder="Vul hier uw adres in">
+                <input type="text" name="addres" required placeholder="Vul hier uw adres in">
                 <label>Vul hier de datum en tijd in:</label>
-                <input type="datetime-local" name="datum" required>
+                <input type="datetime-local" name="datetime" required>
                 <Label> Bestelling afronden:</Label>
-                <input type= "submit" value="Bestelling afronden">
+                <input type= "submit" name="afronden" value="Bestelling afronden">
                 
             </form>
         </div>

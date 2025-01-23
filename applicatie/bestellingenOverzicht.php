@@ -3,7 +3,28 @@
     require_once("Library/db.functions.php");
 
     session_start();
+    var_dump($_POST['status']);
 
+    if(isset($_POST['update'])){
+
+        $db = maakVerbinding();
+
+        $sql = 'UPDATE Pizza_Order
+                SET status = :status
+                WHERE order_id = :orderID';
+
+        $query = $db->prepare($sql);
+
+
+        $array = [
+            ':orderID' => $_POST['order_id'],
+            ':status' => $_POST['status']
+        ];
+
+
+        $succes = $query->execute($array);
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,41 +42,23 @@
         
         <img src="images\Logo.png" alt="">
         <h1>SOLE MACHINA</h1>
-        <p><?php ingelogdCheck() ?> </p>
+        <p><?php ingelogdCheck();
+        ?> </p>
     </Header>
     <nav>
-        <ul>
+        <!-- <ul>
             <li><a href="index.php">🍕 MENU </a></li>
             <li><a href="winkelmand.php">🛒 WINKELMAND </a></li>
             <li><a href="profiel.php">👤 PROFIEL </a></li>
-        </ul>
+        </ul> -->
+        <?php overzicht() ?>
     </nav>
 
     <article>
 
         <h4>Bestellingen Overzicht</h4>
 
-        <div>
-            <h5> <a href="order8374.html">#8374</a></h5>
-            <p>Jansen</p>
-            <p>2X Salami pizza...</p>
-            <p>18:00 uur</p>
-        </div>
-
-        <div>
-            <h5>#8373</h5>
-            <p>Pieters</p>
-            <p>1X Vegetarische pizza...</p>
-            <p>17:55 uur</p>
-        </div>
-
-        <div>
-            <h5>#8372</h5>
-            <p>De Jong</p>
-            <p>3X Supreme pizza...</p>
-            <p>17:52 uur</p>
-        </div>
-
+        <?php overzichtBestellingen() ?>
 
 
     </article>

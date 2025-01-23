@@ -35,13 +35,13 @@
        if ($rij = $query->fetch()) {
            //gebruiker gevonden
            $passwordhash = $rij['password'];
-           var_dump($rij);
+           
 
 
            //wachtwoord checken
            if (password_verify($password, $passwordhash)) { 
                 session_start();
-               $_SESSION['User'] = $username;
+               $_SESSION['Personnel'] = $username;
                header('location: bestellingenOverzicht.php');
                $melding = 'Gebruker is ingelogd';
                echo $melding;
