@@ -3,7 +3,6 @@
     require_once("Library/db.functions.php");
 
     session_start();
-    var_dump($_POST['status']);
 
     if(isset($_POST['update'])){
 

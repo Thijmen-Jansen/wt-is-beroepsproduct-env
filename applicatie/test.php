@@ -44,10 +44,17 @@ session_start();
 // };
 $formattedDate = '';
 if(isset($_POST['test'])){
-    //$date = $_POST['test'];
-    //$datum = date_format($date['test'],"Y/m/d H:i:s");
+    // $date = $_POST['test'];
+    // $datum = date_format($date,"Y/m/d H:i:s");
 
-    //$formattedDate = $date->format("Y-m-d H:i:s");
+    // $formattedDate = $date->format("Y-m-d H:i:s");
+
+
+// Maak een nieuw DateTime-object
+
+
+//echo $formattedDate; // Output: 2025-01-21 14:30:00
+
 
     
 // Maak een nieuw DateTime-object

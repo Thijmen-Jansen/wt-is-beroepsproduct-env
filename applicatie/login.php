@@ -9,8 +9,8 @@
 
    if(isset($_POST['login'])) {
        // 1. lees gegevens
-       $username        = sanitize($_POST['username'],true);
-       $password  = sanitize($_POST['password'],true);
+       $username        = sanitize($_POST['username']);
+       $password  = sanitize($_POST['password']);
       
        // 2. check gegevens
        // Inhoud checken dat mag je zelf doen

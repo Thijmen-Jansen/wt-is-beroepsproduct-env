@@ -61,13 +61,13 @@ function sanitize($string, $allowNull = false)
     if ($allowNull) {
         if ($string === null) {
             return null;
-        } else if (htmlspecialchars(trim(strip_tags($string))) == '') {
-            return null;
+        }
         } else {
             return htmlspecialchars(trim(strip_tags($string)));
         }
-    }
 }
+
+
 
 function ingelogdCheck()
 {
@@ -96,7 +96,8 @@ function winkelwagen(){
     $html = '';
 
     if(isset($_SESSION['winkelwagen'])){
-        foreach($_SESSION['winkelwagen'] as $item){
+        foreach($_SESSION['winkelwagen'] as $quantity){
+            foreach($_SESSION['winkelwagen']['quantity'] as $item){
             $html = "<section><div>";
             echo $html;
             echo $item;
@@ -107,9 +108,9 @@ function winkelwagen(){
             // echo "<section><div>";
             // print_r($item);
             // echo "</div></section>";
-
+            }
         }
-    return $html;
+    //return $html;
     }
 }
 
@@ -163,10 +164,10 @@ function profiel(){
                     echo "Status: " . $status . "</p> </div> <br>";
                 }
                 }
-            }
+            } 
         }
     else{
-        echo "Geen gegevens gevonden, log eerst in.";
+        echo "<div> <p> Geen gegevens gevonden, log eerst in. </p> </div>";
     }
 } 
 
@@ -260,3 +261,10 @@ function overzichtBestellingen(){
     }
 } 
 
+
+
+// $_SESSION['winkelwagen'] = [
+//     'item' => [
+//         'item' => $item
+//     ],
+// ];

@@ -4,43 +4,65 @@ require_once("db_connectie_pizzaria.php");
 session_start();
 
 
+function orderID ($username){
+    $db = maakVerbinding();
 
-    // Loop door elke rij
-    function test(){
-                $db = maakVerbinding();
+    $sql = 'SELECT order_id
+            FROM Pizza_Order
+            WHERE client_username = :username';
 
-        $sql = 'SELECT product_name, quantity
-                FROM Pizza_Order_Product
-                WHERE order_id IN (
-                            SELECT order_id
-                            FROM Pizza_Order
-                            WHERE client_username = :name
-                            );';
+    $query = $db->prepare($sql);
 
-        $query = $db->prepare($sql);
+    $array = [
+        ':username' => $username
+    ];
 
-        $array = [
-            ':name' => $_SESSION['User']
-        ];
+    $resultaat = $query->execute($array);
 
-        $succes = $query->execute($array);
-
-                if ($rij = $query->fetchAll()) { 
-            foreach ($rij as $item) {
-                // Toegang tot kolommen binnen elke rij
-                $order = $item['product_name'];
-                $quantity = $item['quantity'];
-
-                // Print de waarden
-                echo "Product: " . $order . "<br>";
-                echo "Aantal: " . $quantity . "<br>";
-            }
-            }
+    if($resultaat){
+        if($rij = $query->fetch()){
+                $orderID = $rij['order_id'];            
+            return $orderID;
         }
+    } else{
+        echo "Fout";
+        
+    }
+}
+
+
+function bestellen($orderID){
+
+    foreach($_SESSION['winkelwagen'] as $item){}
+
+     $db = maakVerbinding();
+
+     $sql =     'INSERT INTO Pizza_Order_Product ([order_id],[product_name], [quantity])
+                VALUES (:orderID, :item, :quantity)';
+
+    $query = $db->prepare($sql);
+
+    $array = [
+        ':orderID' => $orderID,
+        ':item' => $item,
+        ':quantity' => $quantity
+    ];
+    
+}
+    
+// foreach($_SESSION['winkelwagen'] as $item){
+//     echo $item;
+// }
+//var_dump($_SESSION['winkelwagen']);
 
 
 
-
+foreach($_SESSION['winkelwagen'] as $item){
+    // foreach($item as $test){
+    // echo $item . $test;
+    // }
+    echo $item;
+}
 
 ?>
 
@@ -52,7 +74,8 @@ session_start();
     <title>Document</title>
 </head>
 <body>
-    <?php   test()//echo "$quantity X $order"
+    <?php                   print_r($_SESSION['winkelwagen']);
+                echo "</pre>";//echo orderID($_SESSION['User']);
     ?>
 </body>
 </html>

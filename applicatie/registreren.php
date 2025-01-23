@@ -7,11 +7,11 @@ $login = '';
 if (isset($_POST['register'])) {
     $melding = ' geklikt';
     // var_dump($_POST);
-        $username = sanitize(isset($_POST['name']) ? $_POST['name'] : null,true);
-        $password = sanitize(isset($_POST['password']) ? $_POST['password'] : null,true);
-        $firstName = sanitize(isset($_POST['first_name']) ? $_POST['first_name'] : null,true);
-        $lastName = sanitize(isset($_POST['last_name']) ? $_POST['last_name'] : null,true);
-        $role = sanitize(isset($_POST['role']) ? $_POST['role'] : null,true);
+        $username = sanitize(isset($_POST['name']) ? $_POST['name'] : null);
+        $password = sanitize(isset($_POST['password']) ? $_POST['password'] : null);
+        $firstName = sanitize(isset($_POST['first_name']) ? $_POST['first_name'] : null);
+        $lastName = sanitize(isset($_POST['last_name']) ? $_POST['last_name'] : null);
+        $role = sanitize(isset($_POST['role']) ? $_POST['role'] : null);
 
         if ($username === null && $password === null) {
             $melding = 'Missing username or password';
